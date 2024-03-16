@@ -1,9 +1,11 @@
+import 'package:clean_arch_with_getx/presentation/di/dependency_injection.dart';
 import 'package:clean_arch_with_getx/presentation/image_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/instance_manager.dart';
 
 void main() {
+  DependencyInjections.init();
   runApp(const MyApp());
 }
 
@@ -34,9 +36,10 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   late final ImageController imageController;
+
   @override
   void initState() {
-     imageController = Get.put(ImageController());
+    imageController = Get.find();
     super.initState();
   }
 
@@ -48,11 +51,13 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         body: Obx(
           () => Center(
-              child: ListView.builder(
-                  itemCount: imageController.imagesList.length,
-                  itemBuilder: (ctx, index) => Image.network(imageController
-                      .imagesList[index]
-                      .image))), // This trailing comma makes auto-formatting nicer for build methods.
+              child: imageController.showLoading
+                  ? const CircularProgressIndicator()
+                  : ListView.builder(
+                      itemCount: imageController.imagesList.length,
+                      itemBuilder: (ctx, index) => Image.network(imageController
+                          .imagesList[index]
+                          .image))), // This trailing comma makes auto-formatting nicer for build methods.
         ));
   }
 }
