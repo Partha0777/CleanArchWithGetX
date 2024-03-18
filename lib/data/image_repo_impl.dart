@@ -17,4 +17,9 @@ class ImageRepoImpl extends ImageRepo {
   Future<ImageEntity> getSingleImage() {
     throw UnimplementedError();
   }
+
+  @override
+  Future<ImageEntity> getCollections() {
+    throw UnimplementedError();
+  }
 }

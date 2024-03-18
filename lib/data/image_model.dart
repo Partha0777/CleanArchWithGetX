@@ -9,4 +9,5 @@ class ImageModel {
     return ImageModel(
         id: data["id"], image: data["image"], ratio: data["ratio"]);
   }
+
 }
