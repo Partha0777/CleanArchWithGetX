@@ -14,9 +14,9 @@ class ImageController extends GetxController {
 
   final repo = ImageUseCase(imageRepo: Get.find());
 
-  void onResumed(){
+  void onResumed() {
     //TODO:: Need to implement the onResume logics here.
-}
+  }
 
   @override
   void onInit() {

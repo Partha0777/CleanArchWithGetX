@@ -1,12 +1,10 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get/instance_manager.dart';
 
 import '../presentation/image_controller.dart';
 
-class LifeCycleService extends GetxService with WidgetsBindingObserver{
-
+class LifeCycleService extends GetxService with WidgetsBindingObserver {
   @override
   void onInit() {
     WidgetsBinding.instance.addObserver(this);
