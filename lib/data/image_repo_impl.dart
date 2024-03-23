@@ -23,3 +23,24 @@ class ImageRepoImpl extends ImageRepo {
     throw UnimplementedError();
   }
 }
+
+class GetImageFromFirebase extends ImageRepo{
+  @override
+  Future<List<ImageEntity>> getAllImages() {
+    // TODO: implement getAllImages
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<ImageEntity> getCollections() {
+    // TODO: implement getCollections
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<ImageEntity> getSingleImage() {
+    // TODO: implement getSingleImage
+    throw UnimplementedError();
+  }
+
+}
