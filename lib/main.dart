@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:get/instance_manager.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   DependencyInjections.init();
   runApp(const MyApp());
 }
@@ -49,15 +50,28 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: AppBar(
           title: Text(widget.title),
         ),
-        body: Obx(
-          () => Center(
-              child: imageController.showLoading
-                  ? const CircularProgressIndicator()
-                  : ListView.builder(
-                      itemCount: imageController.imagesList.length,
-                      itemBuilder: (ctx, index) => Image.network(imageController
-                          .imagesList[index]
-                          .image))), // This trailing comma makes auto-formatting nicer for build methods.
-        ));
+        body: Obx(() => Center(
+            child: imageController.showLoading
+                ? const CircularProgressIndicator()
+                : GridView.builder(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,childAspectRatio: 0.8),
+                    itemCount: imageController.imagesList.length,
+                    itemBuilder: (ctx, index) {
+                      return Column(
+                        children: [
+                          Image.network(imageController.imagesList[index].image),
+                          Padding(padding: EdgeInsets.all(8),child: Text("Hey $index"),),
+                          Padding(padding: EdgeInsets.all(8),child: Text("Hey Welcome Image"),),
+                          Padding(padding: EdgeInsets.all(8),child: Text("Source: PicRiser"),)
+                        ],
+                      );
+                    }))));
   }
+/*ListView.builder(
+  itemCount: imageController.imagesList.length,
+  itemBuilder: (ctx, index) => Image.network(imageController
+      .imagesList[index]
+      .image))),*/
 }
